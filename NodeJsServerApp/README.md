@@ -1,2 +1,0 @@
-# HouseTable
-HouseTable mini project
