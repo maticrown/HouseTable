@@ -5,14 +5,14 @@ import HouseForm from './views/HouseForm/HouseForm';
 import HouseDetails from './views/HouseDetails/HouseDetails';
 import HouseUpdate from './views/HouseUpdate/HouseUpdate';
 import './App.css';
-// import {ReactComponent as HomePageIcon} from "./assets/house-icon.svg"
+import {ReactComponent as HomePageIcon} from "./assets/house-icon.svg"
 
 const App = () => {
   return (
     <Router>
       <div className='App'>
-        {/* <Link to="/"><HomePageIcon /></Link> */}
-        <Link to="/" className='App-home-link'>Home</Link>
+        <Link to="/" className='App-home-link'>< HomePageIcon className="App-logo" /></Link>
+        {/* <Link to="/" className='App-home-link'>Home</Link> */}
 
         <Routes>
           <Route exact path="/" element={<HomePage/>} />

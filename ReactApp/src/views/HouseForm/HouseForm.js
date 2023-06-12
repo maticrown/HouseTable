@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
-
+import "./HouseForm.css";
 const HouseForm = () => {
   const [address, setAddress] = useState('');
   const [currentValue, setCurrentValue] = useState('');
@@ -26,10 +26,14 @@ const HouseForm = () => {
     }
   };
 
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   return (
-    <div>
+    <div className='container'>
       <h2>Create a New House</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='form'>
         <input
           type="text"
           placeholder="Address"
@@ -48,22 +52,17 @@ const HouseForm = () => {
           value={loan}
           onChange={(e) => setLoan(e.target.value)}
         />
-        <input
-        type="number"
-        placeholder="Risk"
-        value={risk}
-        onChange={(e) => setRisk(e.target.value)}
-         />
-        <button type="submit">Submit</button>
+        <button type="submit" className='button'>Submit</button>
       </form>
-      <Modal
-        isOpen={modalIsOpen}
-        contentLabel="Example Modal"
-      >
+     { modalIsOpen &&
+      <div className="modal">
+        <button className="close-button" onClick={closeModal}>
+          X
+        </button>
         <h2>Your house details were submitted successfully!</h2>
         <h2>Your house id is {houseId}</h2>
-        <Link to={`/houses/${houseId}`}>House details</Link>
-      </Modal>
+        <Link to={`/houses/${houseId}`} className='modal-link'>House details</Link>
+      </div>}
     </div>
   );
 };

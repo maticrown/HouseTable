@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const HouseUpdate = () => {
   const { id } = useParams();
+  const [houseId, setId] = useState(null);
   const [address, setAddress] = useState('');
   const [currentValue, setCurrentValue] = useState('');
   const [loanAmount, setLoanAmount] = useState('');
@@ -12,26 +13,34 @@ const HouseUpdate = () => {
 
   useEffect(() => {
     const fetchHouseDetails = async () => {
-      try {
-        const response = await axios.get(`/api/houses/${id}`);
-        console.log('response' + response);
-        const { address, currentValue, loanAmount, risk } = response.data;
-        setAddress(address);
-        setCurrentValue(currentValue);
-        setLoanAmount(loanAmount);
-        setRisk(risk);
-      } catch (error) {
-        console.error('Error fetching house details:', error);
+      console.log("house id " + houseId);
+      console.log("id " + id);
+      if(id !== '-1' || (id === '-1' && houseId)){ // Here we check if the house id is already given or we need to get it from the user
+        if(id !== '-1')
+        {
+          setId(id);
+        }
+        try {
+          const response = await axios.get(`/api/houses/${houseId}`);
+          console.log('response' + response);
+          const { address, currentValue, loanAmount, risk } = response.data;
+          setAddress(address);
+          setCurrentValue(currentValue);
+          setLoanAmount(loanAmount);
+          setRisk(risk);
+        } catch (error) {
+          console.error('Error fetching house details:', error);
+        }
       }
     };
 
     fetchHouseDetails();
-  }, [id]);
+  }, [id, houseId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await axios.put(`/api/houses/${id}`, { address, currentValue, loanAmount, risk });
+        await axios.put(`/api/houses/${houseId}`, { address, currentValue, loanAmount, risk });
       setSuccess(true); // Set success state to true after successful submit
     } catch (error) {
       console.error('Error updating house details:', error);
@@ -65,6 +74,12 @@ const HouseUpdate = () => {
     <div>
       <h2>Edit House Details</h2>
       <form onSubmit={handleSubmit}>
+        {id ==='-1' && <input
+          type="text"
+          placeholder="House ID"
+          value={houseId}
+          onChange={(e) => setId(e.target.value)}
+        />}
         <input
           type="text"
           placeholder="Address"

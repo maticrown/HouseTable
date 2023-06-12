@@ -44,7 +44,7 @@ router.post('/', jsonParser, async (req, res) => {
   router.put('/:id',jsonParser, async (req, res) => {
     try {
       const houseId = req.params.id;
-      const { address, currentValue } = req.body;
+      const { currentValue, loanAmount } = req.body;
       
       const house = await House.findByPk(houseId);
       if (!house) {
