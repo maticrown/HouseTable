@@ -10,14 +10,6 @@ const sequelize = new Sequelize('HouseTable', 'root', '!Mc123456!', { // TODO: p
 
   module.exports = sequelize;
 
-// authenticate connection to the database
-  // try {
-  //   await sequelize.authenticate();
-  //   console.log('Connection has been established successfully.');
-  // } catch (error) {
-  //   console.error('Unable to connect to the database:', error);
-  // }
-
 // Define the House model
 const House = sequelize.define('House', {
   id: {

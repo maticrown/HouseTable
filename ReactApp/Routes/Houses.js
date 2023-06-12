@@ -7,7 +7,6 @@ var jsonParser = bodyParser.json();
 // post method to submit a new house
 router.post('/', jsonParser, async (req, res) => {
     try {
-      console.log(req.params);
       const { address, currentValue, loanAmount, risk } = req.body;
       const house = await House.create({
         address,

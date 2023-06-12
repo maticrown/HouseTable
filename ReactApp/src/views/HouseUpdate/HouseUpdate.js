@@ -13,8 +13,6 @@ const HouseUpdate = () => {
 
   useEffect(() => {
     const fetchHouseDetails = async () => {
-      console.log("house id " + houseId);
-      console.log("id " + id);
       if(id !== '-1' || (id === '-1' && houseId)){ // Here we check if the house id is already given or we need to get it from the user
         if(id !== '-1')
         {
@@ -22,7 +20,6 @@ const HouseUpdate = () => {
         }
         try {
           const response = await axios.get(`/api/houses/${houseId}`);
-          console.log('response' + response);
           const { address, currentValue, loanAmount, risk } = response.data;
           setAddress(address);
           setCurrentValue(currentValue);

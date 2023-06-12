@@ -26,7 +26,7 @@ To run the application locally, follow these steps:
 
 1. Clone the repository.
 2. Install the required dependencies by running `npm install` in both the server directory (`cd NodeJsServerApp`) and the client directory (`cd ReactApp`).
-3. Set up the database connection by providing the necessary configurations in the .env file.????
+3. In your config/config.json file, enter your DB account password for user 'root'.
 4. Run the backend server using the command npm start in the `NodeJsServerApp` directory.
 5. Run the frontend development server using the command npm start in the `ReactApp` directory.
 
