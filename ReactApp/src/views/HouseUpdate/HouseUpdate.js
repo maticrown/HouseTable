@@ -64,11 +64,14 @@ const HouseUpdate = () => {
       calculatedRisk += 0.1;
     }
 
+    // Ensure the risk is between 0 and 1
+    calculatedRisk = Math.min(Math.max(calculatedRisk, 0), 1); 
+
     return calculatedRisk;
   };
 
   return (
-    <div>
+    <div className='container'>
       <h2>Edit House Details</h2>
       <form onSubmit={handleSubmit}>
         {id ==='-1' && <input
