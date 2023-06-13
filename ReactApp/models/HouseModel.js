@@ -74,10 +74,6 @@ House.sync()
     console.error('Error creating House table:', error);
   });
 
-  console.log("configOptions.database " + configOptions.database);
-  console.log("configOptions.username " + configOptions.username);
-  console.log("configOptions.password " + configOptions.password);  
-
 // Export the House model
 module.exports = House;
 
