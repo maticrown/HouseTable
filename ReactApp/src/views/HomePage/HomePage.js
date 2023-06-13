@@ -1,3 +1,7 @@
+/**
+ * This file defines the home page of the project
+ */
+
 import React from 'react';
 import "./HomePage.css";
 import { Link } from 'react-router-dom';

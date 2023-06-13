@@ -1,12 +1,25 @@
+/**
+ * This file defines the main house model and creates the database entry using Sequelize
+ */
+
 // Import necessary Sequelize modules
 const { Sequelize , DataTypes} = require('sequelize');
-// const sequelize = require('../database/connection'); // Assuming you have a Sequelize connection configured
+const config = require('../config/config.json');
 
-// connect to the mysql database
-const sequelize = new Sequelize('HouseTable', 'root', '!Mc123456!', { // TODO: password shouldn't be hard coded
-    host: 'localhost',
-    dialect: 'mysql'
-  });
+// Choose the environment based on your needs, e.g., 'development' or 'production'
+const env = process.env.NODE_ENV || 'development';
+const configOptions = config[env];
+
+// connect to the mysql database with the credentials in the config file
+const sequelize = new Sequelize(
+    configOptions.database,
+    configOptions.username,
+    configOptions.password,
+    {
+      host: configOptions.host,
+      dialect: configOptions.dialect
+    }
+  );
 
   module.exports = sequelize;
 
@@ -60,6 +73,10 @@ House.sync()
   .catch((error) => {
     console.error('Error creating House table:', error);
   });
+
+  console.log("configOptions.database " + configOptions.database);
+  console.log("configOptions.username " + configOptions.username);
+  console.log("configOptions.password " + configOptions.password);  
 
 // Export the House model
 module.exports = House;

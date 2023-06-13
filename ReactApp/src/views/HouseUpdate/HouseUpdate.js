@@ -1,3 +1,7 @@
+/**
+ * This file updates the house by the id given after loading the house's details and sensing a change made by the user
+ */
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -13,7 +17,10 @@ const HouseUpdate = () => {
 
   useEffect(() => {
     const fetchHouseDetails = async () => {
-      if(id !== '-1' || (id === '-1' && houseId)){ // Here we check if the house id is already given or we need to get it from the user
+      if(id !== '-1' || (id === '-1' && houseId)){ 
+        // Here we check if the house id is already given 
+        /// or we need to get it from the user
+        /// default value is -1
         if(id !== '-1')
         {
           setId(id);
@@ -44,7 +51,9 @@ const HouseUpdate = () => {
     }
   };
 
-
+/*
+* Updating the risk value
+*/ 
   const handleLoanAmountChange = (e) => {
     const newLoanAmount = e.target.value;
     setLoanAmount(newLoanAmount);

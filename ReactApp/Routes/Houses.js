@@ -1,3 +1,7 @@
+/**
+ * This file defines the apis to get and post the house details
+ */
+
 const express = require('express');
 const router = express.Router();
 const House = require('../models/HouseModel');
@@ -50,14 +54,7 @@ router.post('/', jsonParser, async (req, res) => {
         return res.status(404).json({ error: 'House not found' });
       }
       
-      // Update the house record with the new values
-      // house.address = address;
-      // house.currentValue = currentValue;
-      // house.loanAmount = loanAmount;
-      // house.risk = risk;
-      
-      // Save the updated house record to the database
-      // await house.save();
+      // Update the house record with the new values 
       await house.update({
         currentValue,
         loanAmount

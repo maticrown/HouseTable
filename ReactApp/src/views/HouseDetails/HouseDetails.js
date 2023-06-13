@@ -1,3 +1,7 @@
+/**
+ * This file shows the created house details
+ */
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -6,6 +10,7 @@ const HouseDetails = () => {
   const { id } = useParams();
   const [house, setHouse] = useState(null);
 
+  /// wait for the details received from house with the given id
   useEffect(() => {
     const fetchHouseDetails = async () => {
       try {
